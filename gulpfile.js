@@ -19,8 +19,6 @@ var scss        = './prod/scss/**/*.scss'
 
 
 
-
-
 // Image resize
 gulp.task( 'resize', function() {
   gulp.src( './prod/images/*')
