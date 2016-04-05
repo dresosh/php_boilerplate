@@ -12,7 +12,7 @@ var gulp        = require( 'gulp' )
 
 // Variables
 var scss        = './prod/scss/**/*.scss'
-   ,css         = './css'
+   ,css         = './prod/css'
    ,js          = './prod/js/**/*.js'
    ,jsmin       = './prod/js/**/*.min.js'
    ,markup      = './prod/*.html'
