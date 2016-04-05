@@ -9,7 +9,6 @@ var gulp        = require( 'gulp' )
    ,browserSync = require( 'browser-sync' )
    ,reload      = browserSync.reload
    ,imageResize = require( 'gulp-image-resize' )
-   ,strip       = require( 'gulp-strip-comments' )
 
 // Variables
 var scss        = './prod/scss/**/*.scss'
@@ -18,6 +17,21 @@ var scss        = './prod/scss/**/*.scss'
    ,jsmin       = './prod/js/**/*.min.js'
    ,markup      = './prod/*.html'
 
+
+
+
+
+// Image resize
+gulp.task( 'resize', function() {
+  gulp.src( './prod/images/*')
+      .pipe( imageResize({
+        width:320,
+        height:180,
+        crop: true,
+        upscalse:false
+      }))
+      .pipe( gulp.dest( './prod/images/thumb' ) )
+})
 
 
 // Javascript tasks
@@ -60,21 +74,21 @@ gulp.task( 'browser-sync', function() {
 // Deploy for web
 gulp.task( 'nuke', function() {
   del([
-    'deploy/**'
+    'dist/**'
   ])
 })
 
 
 gulp.task( 'deploy:copy', function() {
   return gulp.src( 'prod/**/*' )
-             .pipe( gulp.dest( 'deploy/' ) )
+             .pipe( gulp.dest( 'dist/' ) )
 })
 
 
 gulp.task( 'deploy:create', ['deploy:copy'], function() {
   del([
-    'deploy/scss/',
-    'deploy/js/!(*.min.js)'
+    'dist/scss/',
+    'dist/js/!(*.min.js)'
   ])
 })
 
