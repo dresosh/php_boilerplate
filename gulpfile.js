@@ -55,9 +55,9 @@ gulp.task( 'browser-sync', function() {
 
 // Watch task
 gulp.task( 'watch', function() {
-  gulp.watch( './js/*', ['scripts'] )
-  gulp.watch( './scss/*', ['sass'] )
-  gulp.watch( './*', ['html'] )
+  gulp.watch( './js/**/*', ['scripts'] )
+  gulp.watch( './scss/**/*', ['sass'] )
+  gulp.watch( './**/*', ['html'] )
 })
 
 // Gulp task
