@@ -15,7 +15,7 @@ var scss        = './prod/scss/**/*.scss'
    ,css         = './prod/css'
    ,js          = './prod/js/**/*.js'
    ,jsmin       = './prod/js/**/*.min.js'
-   ,markup      = './prod/*.+(html|php)'
+   ,markup      = './prod/**/*.+(html|php)'
 
 
 
