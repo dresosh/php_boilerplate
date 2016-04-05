@@ -13,7 +13,7 @@ var gulp        = require( 'gulp' )
 
 // Variables
 var scss        = './prod/scss/**/*.scss'
-   ,css         = ''
+   ,css         = './css'
    ,js          = './prod/js/**/*.js'
    ,jsmin       = './prod/js/**/*.min.js'
    ,markup      = './prod/*.html'
@@ -26,7 +26,7 @@ gulp.task( 'scripts', function() {
       .pipe( plumber() )
       .pipe( rename( { suffix: '.min' } ) )
       .pipe( uglify() )
-      .pipe( gulp.dest( './js') )
+      .pipe( gulp.dest( './prod/js') )
       .pipe( reload( { stream:true } ) )
 })
 
@@ -35,7 +35,7 @@ gulp.task( 'scripts', function() {
 gulp.task('sass', function () {
   return gulp.src( scss )
     .pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError))
-    .pipe( gulp.dest('./css'))
+    .pipe( gulp.dest( css ))
     .pipe( reload( { stream:true } ) )
 });
 
@@ -58,14 +58,34 @@ gulp.task( 'browser-sync', function() {
 
 
 // Deploy for web
+gulp.task( 'nuke', function() {
+  del([
+    'deploy/**'
+  ])
+})
 
+
+gulp.task( 'deploy:copy', function() {
+  return gulp.src( 'prod/**/*' )
+             .pipe( gulp.dest( 'deploy/' ) )
+})
+
+
+gulp.task( 'deploy:create', ['deploy:copy'], function() {
+  del([
+    'deploy/scss/',
+    'deploy/js/!(*.min.js)'
+  ])
+})
+
+gulp.task( 'deploy', [ 'deploy:create'] )
 
 
 // Watch task
 gulp.task( 'watch', function() {
-  gulp.watch( './js/**/*', ['scripts'] )
-  gulp.watch( './scss/**/*', ['sass'] )
-  gulp.watch( './**/*', ['markup'] )
+  gulp.watch( './prod/js/**/*', ['scripts'] )
+  gulp.watch( './prod/scss/**/*', ['sass'] )
+  gulp.watch( './prod/**/*', ['markup'] )
 })
 
 // Gulp task
