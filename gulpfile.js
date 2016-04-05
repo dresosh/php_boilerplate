@@ -15,7 +15,7 @@ var scss        = './prod/scss/**/*.scss'
    ,css         = './prod/css'
    ,js          = './prod/js/**/*.js'
    ,jsmin       = './prod/js/**/*.min.js'
-   ,markup      = './prod/*.html'
+   ,markup      = './prod/*.+(html|php)'
 
 
 
@@ -61,11 +61,9 @@ gulp.task( 'markup', function() {
 
 // Browser-Sync
 gulp.task( 'browser-sync', function() {
-  browserSync({
-    server: {
-      baseDir: "./prod"
-    }
-  })
+  browserSync.init({
+		proxy: 'localhost:8888'
+	})
 })
 
 
