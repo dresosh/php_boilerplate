@@ -1,27 +1,29 @@
 // Required Modules
-var gulp        = require( 'gulp' )
-   ,sass        = require( 'gulp-sass' )
-   ,uglify      = require( 'gulp-uglify' )
-   ,plumber     = require( 'gulp-plumber' )
-   ,rename      = require( 'gulp-rename' )
-   ,plumber     = require( 'gulp-plumber' )
-   ,del         = require( 'del' )
-   ,browserSync = require( 'browser-sync' )
-   ,reload      = browserSync.reload
-   ,imageResize = require( 'gulp-image-resize' )
+var gulp          = require( 'gulp' )
+   ,sass          = require( 'gulp-sass' )
+   ,uglify        = require( 'gulp-uglify' )
+   ,plumber       = require( 'gulp-plumber' )
+   ,rename        = require( 'gulp-rename' )
+   ,plumber       = require( 'gulp-plumber' )
+   ,del           = require( 'del' )
+   ,browserSync   = require( 'browser-sync' )
+   ,reload        = browserSync.reload
+   ,imageResize   = require( 'gulp-image-resize' )
+   ,sourcemaps    = require( 'gulp-sourcemaps' )
+   ,autoprefixer  = require( 'gulp-autoprefixer' )
 
 // Variables
-var scss        = './prod/scss/**/*.scss'
-   ,css         = './prod/css'
-   ,js          = './prod/js/**/*.js'
-   ,jsmin       = './prod/js/**/*.min.js'
-   ,markup      = './prod/**/*.+(html|php)'
+var scss          = './prod/scss/**/*.scss'
+   ,css           = './prod/css'
+   ,js            = './prod/js/**/*.js'
+   ,jsmin         = './prod/js/**/*.min.js'
+   ,markup        = './prod/**/*.+(html|php)'
 
 
 
 // Image resize
 gulp.task( 'resize', function() {
-  gulp.src( './prod/images/*')
+  gulp.src( './prod/images/*' )
       .pipe( imageResize({
         width:320,
         height:180,
@@ -46,9 +48,12 @@ gulp.task( 'scripts', function() {
 // Sass compiler
 gulp.task('sass', function () {
   return gulp.src( scss )
-    .pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError))
-    .pipe( gulp.dest( css ))
-    .pipe( reload( { stream:true } ) )
+      .pipe( sourcemaps.init() )
+      .pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError) )
+      .pipe( sourcemaps.write() )
+      .pipe( autoprefixer() )
+      .pipe( gulp.dest( css ))
+      .pipe( reload( { stream:true } ) )
 });
 
 
@@ -62,7 +67,7 @@ gulp.task( 'markup', function() {
 // Browser-Sync
 gulp.task( 'browser-sync', function() {
   browserSync.init({
-		proxy: 'localhost:8888'
+		proxy: 'http://localhost/php_boilerplate/prod/'
 	})
 })
 
@@ -77,7 +82,7 @@ gulp.task( 'nuke', function() {
 
 gulp.task( 'deploy:copy', function() {
   return gulp.src( 'prod/**/*' )
-             .pipe( gulp.dest( 'dist/' ) )
+      .pipe( gulp.dest( 'dist/' ) )
 })
 
 
@@ -88,7 +93,7 @@ gulp.task( 'deploy:create', ['deploy:copy'], function() {
   ])
 })
 
-gulp.task( 'deploy', [ 'deploy:create'] )
+gulp.task( 'deploy', ['deploy:create'] )
 
 
 // Watch task
