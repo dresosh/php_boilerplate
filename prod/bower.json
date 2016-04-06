@@ -1,0 +1,23 @@
+{
+  "name": "prod",
+  "homepage": "https://github.com/dresosh/php_boilerplate",
+  "authors": [
+    "Dre Sosh <dre@item9creative.com>"
+  ],
+  "description": "",
+  "main": "index.php",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3"
+  }
+}
