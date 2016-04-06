@@ -127,4 +127,4 @@ gulp.task( 'watch', function() {
 })
 
 // Gulp task
-gulp.task( 'default', [ 'browser-sync', 'watch' ] )
+gulp.task( 'default', [ 'browser-sync', 'scripts', 'sass', 'watch' ] )
