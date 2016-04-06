@@ -1,11 +1,13 @@
-nav.navbar {
-  height: 30px;
-}
+@include mobile {  
+  nav.navbar {
+    height: 30px;
+  }
 
-.navbar-collapse {
-  background: #e8e8e8;
-}
+  .navbar-collapse {
+    background: #e8e8e8;
+  }
 
-ul.navbar-nav {
-  margin-top: 0;
-}
+  ul.navbar-nav {
+    margin-top: 0;
+  }
+};
