@@ -88,18 +88,12 @@ gulp.task( 'nuke', function() {
   ])
 })
 
-//Delete sourcemaps and comments in main.css
-gulp.task( 'strip', function() {
-  return gulp.src( css + '/main.css' )
-             .pipe( strip() )
-             .pipe( gulp.dest( css ) )
-})
 
 //Delete sourcemaps and comments in main.css
 gulp.task( 'deploy:clean', ['deploy:copy'], function() {
   return gulp.src( dcss + '/main.css' )
-             .pipe( strip() )
-             .pipe( gulp.dest( dcss ) )
+      .pipe( strip() )
+      .pipe( gulp.dest( dcss ) )
 })
 
 // Make a copy of /prod named /dist
