@@ -88,12 +88,6 @@ gulp.task( 'nuke', function() {
   ])
 })
 
-//Delete sourcemaps and comments in main.css
-gulp.task( 'strip', function() {
-  return gulp.src( css + '/main.css' )
-      .pipe( strip() )
-      .pipe( gulp.dest( css ) )
-})
 
 //Delete sourcemaps and comments in main.css
 gulp.task( 'deploy:clean', ['deploy:copy'], function() {
