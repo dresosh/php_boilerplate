@@ -75,7 +75,7 @@ gulp.task( 'markup', function() {
 // Browser-Sync
 gulp.task( 'browser-sync', function() {
   browserSync.init({
-		proxy: 'localhost/php_boilerplate/prod'
+		proxy: 'localhost:8888'
 	})
 })
 
