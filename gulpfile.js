@@ -51,7 +51,13 @@ gulp.task('sass', function () {
       .pipe( sourcemaps.init() )
       .pipe( sass( { outputStyle: 'compressed' } ).on('error', sass.logError) )
       .pipe( sourcemaps.write() )
-      .pipe( autoprefixer() )
+      .pipe( autoprefixer([
+        'last 2 versions',
+        '> 5%',
+        'Firefox ESR',
+        'ie 9',
+        'opera 12'
+      ]) )
       .pipe( gulp.dest( css ))
       .pipe( reload( { stream:true } ) )
 });
