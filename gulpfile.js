@@ -11,10 +11,12 @@ var gulp          = require( 'gulp' )
    ,imageResize   = require( 'gulp-image-resize' )
    ,sourcemaps    = require( 'gulp-sourcemaps' )
    ,autoprefixer  = require( 'gulp-autoprefixer' )
+   ,strip         = require( 'gulp-strip-comments' )
 
 // Variables
 var scss          = './prod/scss/**/*.scss'
    ,css           = './prod/css'
+   ,dcss          = './dist/css'
    ,js            = './prod/js/**/*.js'
    ,jsmin         = './prod/js/**/*.min.js'
    ,markup        = './prod/**/*.+(html|php)'
@@ -79,20 +81,35 @@ gulp.task( 'browser-sync', function() {
 
 
 // Deploy for web
+// Delete /dist files
 gulp.task( 'nuke', function() {
   del([
     'dist/**'
   ])
 })
 
+//Delete sourcemaps and comments in main.css
+gulp.task( 'strip', function() {
+  return gulp.src( css + '/main.css' )
+             .pipe( strip() )
+             .pipe( gulp.dest( css ) )
+})
 
+//Delete sourcemaps and comments in main.css
+gulp.task( 'deploy:clean', ['deploy:copy'], function() {
+  return gulp.src( dcss + '/main.css' )
+             .pipe( strip() )
+             .pipe( gulp.dest( dcss ) )
+})
+
+// Make a copy of /prod named /dist
 gulp.task( 'deploy:copy', function() {
   return gulp.src( 'prod/**/*' )
       .pipe( gulp.dest( 'dist/' ) )
 })
 
-
-gulp.task( 'deploy:create', ['deploy:copy'], function() {
+// Delete scss files and unminified js files
+gulp.task( 'deploy:create', ['deploy:clean'], function() {
   del([
     'dist/scss/',
     'dist/js/!(*.min.js)'
