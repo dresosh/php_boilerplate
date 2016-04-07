@@ -1,0 +1,108 @@
+@mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
+ $responsive-unitless: $responsive / ($responsive - $responsive + 1);
+ $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+ $min-breakpoint: $min / $responsive-unitless * 100;
+ @media (max-#{$dimension}: #{$min-breakpoint}) {
+   font-size: $min;
+ }
+ @if $max {
+   $max-breakpoint: $max / $responsive-unitless * 100;
+   @media (min-#{$dimension}: #{$max-breakpoint}) {
+     font-size: $max;
+   }
+ }
+ @if $fallback {
+   font-size: $fallback;
+ }
+ font-size: $responsive;
+}
+
+
+// responsive mix-ins
+$iphone5-vertical: 320px;
+$iphone6-vertical: 375px;
+$iphone6-plus-vertical: 414px;
+$iphone5-landscape: 568px;
+$iphone6-landscape: 667px;
+$iphone6-plus-landscape: 736px;
+$ipad-vertical: 768px;
+$ipad-landscape: 1024px;
+$desktop-1600px: 1600px;
+$desktop-1920px: 1920px;
+
+@mixin non-mobile {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media (min-width: #{$desktop-1600px + 1px}) and (max-width: #{$desktop-1920px}) {
+    @content;
+  }
+}
+@mixin ipad {
+  @media (min-width: #{$iphone6-plus-landscape + 1px}) and (max-width: #{$ipad-landscape}) {
+    @content;
+  }
+}
+@mixin ipad-landscape {
+  @media (min-device-width: #{$ipad-vertical + 1px}) and (max-device-width: #{$ipad-landscape}) {
+    @content;
+  }
+}
+@mixin ipad-portrait {
+  @media (min-device-width: #{$iphone6-plus-landscape + 1px}) and (max-device-width: #{$ipad-vertical}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (min-device-width: #{0px}) and (max-device-width: #{$ipad-vertical}) {
+    @content;
+  }
+}
+@mixin iphone {
+  @media (min-device-width: #{0px}) and (max-device-width: #{$iphone6-plus-landscape}) {
+    @content;
+  }
+}
+@mixin iphone-landscape {
+  @media (min-device-width: #{$iphone5-landscape}) and (max-device-width: #{$iphone6-plus-landscape}) {
+    @content;
+  }
+}
+@mixin iphone6-plus-landscape {
+  @media (min-device-width: #{$iphone6-landscape + 1px}) and (max-device-width: #{$iphone6-plus-landscape}) {
+    @content;
+  }
+}
+@mixin iphone6-landscape {
+  @media (min-device-width: #{$iphone5-landscape + 1px}) and (max-device-width: #{$iphone6-landscape}) {
+    @content;
+  }
+}
+@mixin iphone5-landscape {
+  @media (min-device-width: #{$iphone6-plus-vertical + 1px}) and (max-device-width: #{$iphone5-landscape}) {
+    @content;
+  }
+}
+@mixin iphone-portrait {
+  @media (min-device-width: #{0px}) and (max-device-width: #{$iphone6-plus-vertical}) {
+    @content;
+  }
+}
+@mixin iphone6-plus-portrait {
+  @media (min-device-width: #{$iphone6-vertical + 1px}) and (max-device-width: #{$iphone6-plus-vertical}) {
+    @content;
+  }
+}
+@mixin iphone6-portrait {
+  @media (min-device-width: #{$iphone5-vertical + 1px}) and (max-device-width: #{$iphone6-vertical}) {
+    @content;
+  }
+}
+@mixin iphone5-portrait {
+  @media (min-device-width: #{0px}) and (max-device-width: #{$iphone5-vertical}) {
+    @content;
+  }
+}
