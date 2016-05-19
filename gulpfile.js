@@ -56,9 +56,7 @@ gulp.task('sass', function () {
       .pipe( autoprefixer([
         'last 2 versions',
         '> 5%',
-        'Firefox ESR',
-        'ie 9',
-        'opera 12'
+        'Firefox ESR'
       ]) )
       .pipe( gulp.dest( css ))
       .pipe( reload( { stream:true } ) )
