@@ -1,13 +1,32 @@
-@include mobile {  
-  nav.navbar {
-    height: 30px;
+nav.navbar {
+  height: $nav-height;
+  background: $nav-bg;
+  .navbar-header {
+    // Header
   }
-
   .navbar-collapse {
-    background: #e8e8e8;
-  }
+    ul.navbar-nav {
+      // Primary Nav
+      li {
+        a {
+          &:hover {
+            color: $active-clr;
+            background: $active-bg;
+          }
+        }
+      }
 
-  ul.navbar-nav {
-    margin-top: 0;
+      // Active State
+      li.active {
+        a {
+          background: $active-bg;
+          box-shadow: none;
+          color: $active-clr;
+        }
+      }
+    }
+    ul.navbar-right {
+      // Right Nav
+    }
   }
-};
+}
