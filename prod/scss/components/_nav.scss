@@ -1,6 +1,7 @@
 nav.navbar {
   height: $nav-height;
   background: $nav-bg;
+  border: none;
   .navbar-header {
     // Header
   }
@@ -9,6 +10,8 @@ nav.navbar {
       // Primary Nav
       li {
         a {
+          color: $nav-clr;
+          height: $nav-height;
           &:hover {
             color: $active-clr;
             background: $active-bg;
