@@ -49,14 +49,6 @@ if ( screen.width < 769 ) {
   }
 }
 
-// Set Nav Top-Padding
-var paddingTop = $('.navbar-nav a').css('padding-top')
-   ,posTop     = $('.navbar-nav').css('top')
-   ,eq         = posTop / 2
-
-console.log(paddingTop);
-// console.log(eq);
-
 
 // Home ------------------------------------------------------------------------
 
