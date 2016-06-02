@@ -2,23 +2,44 @@ nav.navbar {
   height: $nav-height;
   background: $nav-bg;
   border: none;
+  // Nav Logo
   .navbar-header {
-    // Header
+    position: relative;
+    button {
+      border: none;
+    }
+    a.navbar-brand {
+      @include iphone {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      };
+    }
   }
   .navbar-collapse {
+    border: none;
+    // Primary Nav
     ul.navbar-nav {
-      // Primary Nav
+      position: relative;
+      margin-top: 0;
+      background: $nav-bg;
+      @include iphone {
+        top: $positioning;
+      };
       li {
         a {
+          padding-top: 15px;
           color: $nav-clr;
           height: $nav-height;
+          @include iphone {
+            // padding-top: 15px;
+          };
           &:hover {
             color: $active-clr;
             background: $active-bg;
           }
         }
       }
-
       // Active State
       li.active {
         a {
@@ -27,9 +48,6 @@ nav.navbar {
           color: $active-clr;
         }
       }
-    }
-    ul.navbar-right {
-      // Right Nav
     }
   }
 }

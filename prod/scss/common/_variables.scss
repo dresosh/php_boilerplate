@@ -1,10 +1,18 @@
 // Navbar ----------------------------------------------------------------------
 
+
+
 // default state
-$nav-height: 50px; 
+$nav-height: 50px;
 $nav-clr: ;
 $nav-bg: ;
 
 // active state
 $active-clr: ;
 $active-bg: ;
+
+
+// Do Not Edit
+$nav: 50px;
+$positioning: calc( #{ $nav-height } - #{ $nav } );
+// Do Not Edit

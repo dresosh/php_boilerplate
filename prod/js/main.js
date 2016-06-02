@@ -11,31 +11,54 @@ if ( $( 'nav' ).hasClass( 'navbar-fixed-top' ) ) {
 }
 
 // Smooth scroll
-  $( "a[href^='#']" ).on( 'click', function( e ) {
+$( "a[href^='#']" ).on( 'click', function( e ) {
 
-      // prevent default anchor click behavior
-      e.preventDefault();
+    // prevent default anchor click behavior
+    e.preventDefault();
 
-      // store hash
-      var hash = this.hash;
+    // store hash
+    var hash = this.hash;
 
-      // animate
-      $( 'html, body' ).animate( {
-          scrollTop: $( hash ).offset().top - paddingTop
-      }, 800, function(){
+    // animate
+    $( 'html, body' ).animate( {
+        scrollTop: $( hash ).offset().top - paddingTop
+    }, 800, function(){
 
-          // when done, add hash to url
-          // ( default click behaviour )
-          window.location.hash = hash;
-      } );
+        // when done, add hash to url
+        // ( default click behaviour )
+        window.location.hash = hash;
+    } );
 
-  } );
+} );
 
-  // Scrollspy
-  $( 'body' ).scrollspy( {
-    target: '#main-nav',
-    offset: paddingTop
-  } )
+// Scrollspy
+$( 'body' ).scrollspy( {
+  target: '#main-nav',
+  offset: paddingTop
+} )
+
+
+// Make nav collapse after link was clicked
+if ( screen.width < 769 ) {
+  $( '.nav a' ).on( 'click', function(){
+    navbarClick();
+  });
+  function navbarClick() {
+    $( '.btn-navbar' ).click()
+    $( '.navbar-toggle' ).click()
+  }
+}
+
+// Set Nav Top-Padding
+var paddingTop = $('.navbar-nav a').css('padding-top')
+   ,posTop     = $('.navbar-nav').css('top')
+   ,eq         = posTop / 2
+
+console.log(paddingTop);
+// console.log(eq);
+
+
+// Home ------------------------------------------------------------------------
 
 
 } )
