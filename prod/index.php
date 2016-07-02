@@ -1,4 +1,6 @@
-<?php include '_common/head.php'; ?>
-<?php include '_common/nav.php'; ?>
-<?php include 'home.php'; ?>
-<?php include '_common/footer.php'; ?>
+<?php
+  include '_common/head.php';
+  include '_common/nav.php';
+  include 'home.php';
+  include '_common/footer.php';
+?>
