@@ -3,13 +3,14 @@
 @import "../bower_components/bootstrap/dist/css/bootstrap-theme.min.css";
 
 // Common
-@import "common/global";
-@import "common/animate";
 @import "common/variables";
 @import "common/mixins";
+@import "common/animate";
+@import "common/global";
 
 // Components
 @import "components/nav";
 
 // Layout
 @import "layout/home";
+@import "layout/contact";
